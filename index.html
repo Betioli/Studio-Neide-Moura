@@ -6,6 +6,8 @@
     <title>Análise Digital - Studio Neide Moura</title>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/png" href="image/image.png">
+    
     <style>
         * {
             margin: 0;
@@ -1440,6 +1442,31 @@
         .delay-3 {
             animation-delay: 0.3s;
         }
+        /* CORREÇÃO PARA LINKS ANCORADOS COM NAVBAR FIXA */
+        #diagnostico, #mercado, #concorrentes, #estrategia, #roi {
+            scroll-margin-top: 80px; /* Altura da navbar */
+        }
+
+        /* Ajuste específico para seções */
+        #secao-diagnostico-canais {
+            scroll-margin-top: 80px;
+        }
+
+        #secao-pesquisa-mercado {
+            scroll-margin-top: 80px;
+        }
+
+        #secao-concorrentes {
+            scroll-margin-top: 80px;
+        }
+
+        #secao-plano-estrategico {
+            scroll-margin-top: 80px;
+        }
+
+        #secao-clareza-valor {
+            scroll-margin-top: 80px;
+        }
     </style>
 </head>
 <body>
@@ -2246,7 +2273,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
         
-        // Smooth scroll para links âncora
+        // Smooth scroll para links âncora (CORRIGIDO)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -2256,10 +2283,18 @@
                 
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
+                    // Calcula a posição considerando a navbar fixa
+                    const navbarHeight = document.getElementById('navbar-principal').offsetHeight;
+                    const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset;
+                    const offsetPosition = targetPosition - navbarHeight - 20; // +20px de margem
+                    
                     window.scrollTo({
-                        top: targetElement.offsetTop - 80,
+                        top: offsetPosition,
                         behavior: 'smooth'
                     });
+                    
+                    // Atualiza a URL sem recarregar a página
+                    history.pushState(null, null, targetId);
                 }
             });
         });
