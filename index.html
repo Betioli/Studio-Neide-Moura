@@ -1442,31 +1442,57 @@
         .delay-3 {
             animation-delay: 0.3s;
         }
-        /* CORREÇÃO PARA LINKS ANCORADOS COM NAVBAR FIXA */
-        #diagnostico, #mercado, #concorrentes, #estrategia, #roi {
-            scroll-margin-top: 80px; /* Altura da navbar */
-        }
+        /* =========================================== */
+/* CORREÇÃO DEFINITIVA PARA LINKS ANCORADOS */
+/* =========================================== */
 
-        /* Ajuste específico para seções */
-        #secao-diagnostico-canais {
-            scroll-margin-top: 80px;
-        }
+/* 1. Scroll suave NATIVO do navegador */
+html {
+    scroll-behavior: smooth;
+}
 
-        #secao-pesquisa-mercado {
-            scroll-margin-top: 80px;
-        }
+/* 2. Compensação EXATA para a navbar fixa */
+section[id],
+div[id] {
+    scroll-margin-top: 90px; /* 80px navbar + 10px margem */
+}
 
-        #secao-concorrentes {
-            scroll-margin-top: 80px;
-        }
+/* 3. Ajustes específicos para cada seção alvo */
+#secao-diagnostico-canais {
+    scroll-margin-top: 90px;
+}
 
-        #secao-plano-estrategico {
-            scroll-margin-top: 80px;
-        }
+#secao-pesquisa-mercado {
+    scroll-margin-top: 90px;
+}
 
-        #secao-clareza-valor {
-            scroll-margin-top: 80px;
-        }
+#secao-concorrentes {
+    scroll-margin-top: 90px;
+}
+
+#secao-plano-estrategico {
+    scroll-margin-top: 90px;
+}
+
+#secao-clareza-valor {
+    scroll-margin-top: 90px;
+}
+
+/* 4. Para telas menores */
+@media (max-width: 768px) {
+    section[id],
+    div[id] {
+        scroll-margin-top: 140px; /* Navbar em mobile é maior */
+    }
+    
+    #secao-diagnostico-canais,
+    #secao-pesquisa-mercado,
+    #secao-concorrentes,
+    #secao-plano-estrategico,
+    #secao-clareza-valor {
+        scroll-margin-top: 140px;
+    }
+}
     </style>
 </head>
 <body>
@@ -1476,13 +1502,13 @@
             <img src="image/logo-studio-neide-moura.png" alt="Logo" style="height: 55px;">
         </div>
         <div id="links-navegacao-navbar">
-            <a href="#diagnostico" class="link-navbar-navegacao">Diagnóstico</a>
+            <a href="#secao-diagnostico-canais" class="link-navbar-navegacao">Diagnóstico</a>
             <span class="seta-navbar">→</span>
-            <a href="#mercado" class="link-navbar-navegacao">Mercado</a>
+            <a href="#secao-pesquisa-mercado" class="link-navbar-navegacao">Mercado</a>
             <span class="seta-navbar">→</span>
-            <a href="#concorrentes" class="link-navbar-navegacao">Concorrentes</a>
+            <a href="#secao-concorrentes" class="link-navbar-navegacao">Concorrentes</a>
             <span class="seta-navbar">→</span>
-            <a href="#estrategia" class="link-navbar-navegacao">Estratégias</a>
+            <a href="#secao-plano-estrategico" class="link-navbar-navegacao">Estratégias</a>
         </div>
         <a href="https://wa.me/5516981005730?text=Fala%20William%20tudo%20joia%20?%20Vi%20a%20sua%20análise%20e%20gostaria%20de%20falar%20mais%20sobre%20o%20assunto." id="botao-contato-navbar">Fale conosco</a>
     </nav>
@@ -2273,7 +2299,7 @@
             window.scrollTo({ top: 0, behavior: 'smooth' });
         });
         
-        // Smooth scroll para links âncora (CORRIGIDO)
+        /* Smooth scroll para links âncora (CORRIGIDO)
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
                 e.preventDefault();
@@ -2297,7 +2323,7 @@
                     history.pushState(null, null, targetId);
                 }
             });
-        });
+        });*/
         
         // Animação ao scroll
         const observerOptions = {
